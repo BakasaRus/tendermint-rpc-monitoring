@@ -7,49 +7,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tendermint RPC Monitoring</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        footer.footer {
+            padding-bottom: 3rem;
+        }
+    </style>
 </head>
 
 <body>
-    <section class="section">
-        <div class="container">
-            <h1 class="title is-2">
-                Tendermint RPC Monitoring
-            </h1>
-            <p class="subtitle is-4">
-                Chain: <span id="network">-</span> (<span id="synced">not synced</span>)
-            </p>
-        </div>
-    </section>
-    <section class="section">
-        <div class="container">
-            <div class="columns is-multiline">
-                <div class="column is-6-tablet is-3-fullhd">
-                    <div class="box">
-                        <h2 class="title is-3">Chain height</h2>
-                        <p class="is-size-1" id="height"></p>
+    <main>
+
+        <section class="section">
+            <div class="container">
+                <h1 class="title is-2">
+                    Tendermint RPC Monitoring
+                </h1>
+                <p class="subtitle is-4">
+                    Chain: <span id="network">-</span> (<span id="synced">not synced</span>)
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-multiline">
+                    <div class="column is-6-tablet is-3-fullhd">
+                        <div class="box">
+                            <h2 class="title is-3">Chain height</h2>
+                            <p class="is-size-1" id="height"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="column is-6-tablet is-3-fullhd">
-                    <div class="box">
-                        <h2 class="title is-3">Active validators</h2>
-                        <p class="is-size-1" id="validators"></p>
+                    <div class="column is-6-tablet is-3-fullhd">
+                        <div class="box">
+                            <h2 class="title is-3">Active validators</h2>
+                            <p class="is-size-1" id="validators"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="column is-6-tablet is-3-fullhd">
-                    <div class="box">
-                        <h2 class="title is-3">TXs in last block</h2>
-                        <p class="is-size-1" id="txs"></p>
+                    <div class="column is-6-tablet is-3-fullhd">
+                        <div class="box">
+                            <h2 class="title is-3">TXs in last block</h2>
+                            <p class="is-size-1" id="txs"></p>
+                        </div>
                     </div>
-                </div>
-                <div class="column is-6-tablet is-3-fullhd">
-                    <div class="box">
-                        <h2 class="title is-3">Mempool TXs</h2>
-                        <p class="is-size-1" id="mempool"></p>
+                    <div class="column is-6-tablet is-3-fullhd">
+                        <div class="box">
+                            <h2 class="title is-3">Mempool TXs</h2>
+                            <p class="is-size-1" id="mempool"></p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>Proudly made by <a href="https://discord.com/users/443071424542801920" target="_blank">Bakasa#5647</a></p>
         </div>
-    </section>
+    </footer>
     <script type="module">
         const rpc = 'http://65.21.204.124:29657';
 
@@ -92,7 +117,7 @@
         load_network();
         load_mempool();
         let networkTimerId = setInterval(load_network, 5000);
-        let mempoolTimerId = setInterval(load_mempool, 500);
+        let mempoolTimerId = setInterval(load_mempool, 1000);
         window.onunload = function () {
             clearInterval(networkTimerId);
             clearInterval(mempoolTimerId);
