@@ -1,4 +1,4 @@
-const rpc = 'http://65.21.204.124:29657';
+const rpc = 'https://umeevengers-1b-rpc-3.nodes.guru:443';
 
 async function load_network() {
     let status = await fetch(`${rpc}/status?`);
